@@ -1,0 +1,15 @@
+diff --git a/cmake/sdlchecks.cmake b/cmake/sdlchecks.cmake
+index c175cf5..ffce0bb 100644
+--- a/cmake/sdlchecks.cmake
++++ b/cmake/sdlchecks.cmake
+@@ -727,7 +727,9 @@ endmacro()
+ # PTHREAD_LIBS
+ macro(CheckPTHREAD)
+   if(PTHREADS)
+-    if(LINUX)
++    if(ANDROID)
++      set(PTHREAD_CFLAGS "-D_REENTRANT")
++    elseif(LINUX)
+       set(PTHREAD_CFLAGS "-D_REENTRANT")
+       set(PTHREAD_LDFLAGS "-pthread")
+     elseif(BSDI)
